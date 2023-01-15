@@ -12,13 +12,31 @@ class DropDownResolution extends StatefulWidget {
   State<DropDownResolution> createState() => _DropDownResolutionState();
 }
 
-class HomePage extends StatelessWidget {
-  final formInputController = TextEditingController();
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final formInputController = TextEditingController();
+  bool isPlaylist = false;
 
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('AllInOne Downloader'),
@@ -49,23 +67,44 @@ class HomePage extends StatelessWidget {
                 height: 20.0,
               ),
               const SizedBox(
-								height: 50.0,
+                height: 50.0,
                 child: DropDownResolution(),
+              ),
+              const SizedBox(
+                height: 30.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Checkbox( 
+                    value: isPlaylist,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isPlaylist = value!;
+                      });
+                    },
+                    checkColor: Colors.white,
+                    fillColor: MaterialStateProperty.resolveWith(getColor),
+                  ),
+                  const Text(
+                    'PlayList (check if it\'s a playlist link)'
+                  )
+                ],
               ),
               const SizedBox(
                 height: 30.0,
               ),
               TextButton(
                 style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-									fixedSize: const Size(100.0, 40.0)
-                ),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    fixedSize: const Size(100.0, 40.0)),
                 onPressed: () async {
                   // print(formInputController.text);
                   Map ytUrlData = {
                     'url': formInputController.text,
                     'resolution': selectedItem,
+                    'isplaylist': isPlaylist,
                   };
 
                   // encode map to json
@@ -101,7 +140,8 @@ class _DropDownResolutionState extends State<DropDownResolution> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       value: "1080p",
-      items: <String>['144p', '240p', '360p', '480p', '720p', '1080p'].map((String value) {
+      items: <String>['144p', '240p', '360p', '480p', '720p', '1080p']
+          .map((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),
@@ -112,9 +152,9 @@ class _DropDownResolutionState extends State<DropDownResolution> {
           selectedItem = newValue!;
         });
       },
-			decoration: const InputDecoration(
-				border: OutlineInputBorder(),
-			),
+      decoration: const InputDecoration(
+        border: OutlineInputBorder(),
+      ),
     );
   }
 }
