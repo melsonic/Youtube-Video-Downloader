@@ -6,5 +6,5 @@
 -- The backend server is written in python and used Flask microframework that uses pytube library that does most of the heavylifting downloading the videos.
 
 ### Screenshots -->
-![Screenshot 1] [/images/app-ss-1.png]
-![Screenshot 2] [/images/app-ss-2.png]
+![Screenshot 1](https://github.com/melsonic/Youtube-Video-Downloader/blob/main/images/app-ss-1.png)
+![Screenshot 2](https://github.com/melsonic/Youtube-Video-Downloader/blob/main/images/app-ss-1.png)
