@@ -7,4 +7,5 @@
 
 ### Screenshots -->
 ![Screenshot 1](https://github.com/melsonic/Youtube-Video-Downloader/blob/main/images/app-ss-1.png)
-![Screenshot 2](https://github.com/melsonic/Youtube-Video-Downloader/blob/main/images/app-ss-1.png)
+<br>
+![Screenshot 2](https://github.com/melsonic/Youtube-Video-Downloader/blob/main/images/app-ss-2.png)
