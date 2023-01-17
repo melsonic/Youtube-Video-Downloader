@@ -12,7 +12,7 @@ develop-eggs/
 dist/
 eggs/
 lib/
-lib64/
+./lib64/
 parts/
 sdist/
 var/
@@ -49,3 +49,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
+
+procfile
+pyvenv.cfg
+server/lib
